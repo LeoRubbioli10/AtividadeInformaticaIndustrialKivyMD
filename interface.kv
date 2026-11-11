@@ -75,3 +75,13 @@ MDScreen:
             MDRaisedButton:
                 text: "Escrever"
                 on_release: app.escrever_dado()
+
+            MDBoxLayout:
+                spacing: "5dp"
+                MDCheckbox:
+                    id: check_recorrente
+                    size_hint: None, None
+                    size: "48dp", "48dp"
+                    on_active: app.toggle_leitura_recorrente(*args)
+                MDLabel:
+                    text: "Leitura Contínua"
