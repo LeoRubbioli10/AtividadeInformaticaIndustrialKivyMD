@@ -63,3 +63,19 @@ class ModbusApp(MDApp):
         if not self.cliente_modbus:
             self.root.ids.label_status.text = "Status: Conecte primeiro!"
             return
+        
+        try:
+            tipo = int(self.root.ids.input_tipo.text)
+            endereco = int(self.root.ids.input_endereco.text)
+            valor_str = self.root.ids.input_valor.text
+            sucesso = False
+
+            if tipo == 1:
+                sucesso = self.cliente_modbus.escreveDado(1, endereco, int(valor_str))
+            elif tipo == 2:
+                sucesso = self.cliente_modbus.escreveDado(2, endereco, int(valor_str))
+            elif tipo == 3: 
+                sucesso = self.cliente_modbus.escrever_float(endereco, float(valor_str))
+            elif tipo == 4: 
+                indice = int(self.root.ids.input_indice_bit.text)
+                sucesso = self.cliente_modbus.escrever_bit_individual(endereco, indice, int(valor_str))
