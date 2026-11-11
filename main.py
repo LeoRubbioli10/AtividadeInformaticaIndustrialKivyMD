@@ -96,3 +96,7 @@ class ModbusApp(MDApp):
                 self.evento_leitura.cancel()
                 self.evento_leitura = None
             self.root.ids.label_status.text = "Status: Leitura Recorrente Desativada"
+
+    def on_stop(self):
+        if self.cliente_modbus:
+            self.cliente_modbus.fechar()
