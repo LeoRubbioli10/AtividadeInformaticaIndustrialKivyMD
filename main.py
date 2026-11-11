@@ -27,3 +27,8 @@ class ModbusApp(MDApp):
             self.root.ids.btn_conectar.disabled = True
         else:
             self.root.ids.label_status.text = "Status: Falha ao conectar"
+
+    def ler_dado(self, dt=None):
+        if not self.cliente_modbus:
+            self.root.ids.label_status.text = "Status: Conecte primeiro!"
+            return
