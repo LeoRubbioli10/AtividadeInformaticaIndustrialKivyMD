@@ -32,3 +32,21 @@ class ModbusApp(MDApp):
         if not self.cliente_modbus:
             self.root.ids.label_status.text = "Status: Conecte primeiro!"
             return
+        try:
+            tipo = int(self.root.ids.input_tipo.text)
+            endereco = int(self.root.ids.input_endereco.text)
+            resultado = None
+
+            if tipo == 1:
+                resultado = self.cliente_modbus.lerDado(1, endereco)
+            elif tipo == 2:
+                resultado = self.cliente_modbus.lerDado(2, endereco)
+            elif tipo == 3: 
+                resultado = self.cliente_modbus.ler_float(endereco)
+            elif tipo == 4: 
+                bits = self.cliente_modbus.ler_bits_registrador(endereco)
+                indice = self.root.ids.input_indice_bit.text
+                if bits and indice.isdigit():
+                    resultado = bits[int(indice)]
+                else:
+                    resultado = bits
