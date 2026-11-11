@@ -6,7 +6,7 @@ from kivy.clock import Clock
 
 # Adiciona o diretório atual ao path para importar a pasta cliente
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-from cliente.clientemodbus import ClienteMODBUS
+from ClienteMODBUS.clientemodbus import ClienteMODBUS
 
 class ModbusApp(MDApp):
     def build(self):
