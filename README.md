@@ -85,3 +85,36 @@ python -m exemplos.exemplo_bits
 ## 7. Versionamento e entrega
 
 Cada integrante desenvolve em sua própria branch, registra commits e revisa as alterações do colega antes da integração à main. A entrega é feita pelo link do repositório GitHub postado no Google Classroom.
+
+# AtividadeInformaticaIndustrialKivyMD
+
+## 1. Descrição
+
+Atividade prática da disciplina **Informática Industrial (ENE118)**, da UFJF, desenvolvida em dupla. O projeto utiliza Python e Modbus TCP para simular um CLP lendo dados de um Inversor Híbrido.
+
+Além dos scripts de linha de comando, o projeto agora conta com uma **Interface Gráfica de Usuário (GUI)** desenvolvida com o framework **KivyMD**, permitindo a interação amigável para conexão, leitura, escrita (incluindo valores float32 e bits individuais) e monitoramento contínuo dos registradores do servidor Modbus.
+
+## 2. Organização do projeto final
+
+- `main.py` — Código principal da interface gráfica em KivyMD.
+- `interface.kv` — Arquivo de estruturação de layout e design da interface gráfica.
+- `ServidorMODBUS/servidormodbus.py` — servidor Modbus TCP e emulação do CLP.
+- `cliente/clientemodbus.py` — classe de conexão, leitura, escrita e conversão de dados.
+- `exemplos/exemplo_float.py` — demonstração via terminal de float32 e escala.
+- `exemplos/exemplo_bits.py` — demonstração via terminal de leitura e escrita de bits.
+- `requirements.txt` — dependências e versões exatas utilizadas (incluindo Kivy e KivyMD).
+- `.gitignore` — exclusão do ambiente virtual e de arquivos temporários.
+
+## 3. Instalação e execução
+
+Na raiz do repositório, crie e ative o ambiente virtual para isolar as dependências (recomendado usar Python 3.11 ou 3.12 para compatibilidade com o Kivy):
+
+```bash
+# Criar ambiente virtual
+python -m venv env
+
+# Ativar ambiente (Windows)
+.\env\Scripts\activate
+
+# Instalar dependências
+pip install -r requirements.txt
