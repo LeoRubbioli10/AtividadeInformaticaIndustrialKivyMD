@@ -14,3 +14,16 @@ class ModbusApp(MDApp):
         self.evento_leitura = None
         # Carrega o arquivo separado
         return Builder.load_file('interface.kv')
+    
+    def conectar(self):
+        ip = self.root.ids.input_ip.text
+        porta = int(self.root.ids.input_porta.text)
+        
+        if not self.cliente_modbus:
+            self.cliente_modbus = ClienteMODBUS(server_ip=ip, porta=porta)
+        
+        if self.cliente_modbus.conectar():
+            self.root.ids.label_status.text = f"Status: Conectado a {ip}:{porta}"
+            self.root.ids.btn_conectar.disabled = True
+        else:
+            self.root.ids.label_status.text = "Status: Falha ao conectar"
