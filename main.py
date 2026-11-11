@@ -86,3 +86,13 @@ class ModbusApp(MDApp):
                 self.root.ids.label_resultado.text = "Erro na escrita."
         except ValueError:
             self.root.ids.label_status.text = "Status: Valor de escrita inválido."
+
+    def toggle_leitura_recorrente(self, checkbox, is_active):
+        if is_active:
+            self.evento_leitura = Clock.schedule_interval(self.ler_dado, 1)
+            self.root.ids.label_status.text = "Status: Leitura Recorrente Ativada"
+        else:
+            if self.evento_leitura:
+                self.evento_leitura.cancel()
+                self.evento_leitura = None
+            self.root.ids.label_status.text = "Status: Leitura Recorrente Desativada"
