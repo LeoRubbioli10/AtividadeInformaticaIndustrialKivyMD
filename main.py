@@ -100,3 +100,6 @@ class ModbusApp(MDApp):
     def on_stop(self):
         if self.cliente_modbus:
             self.cliente_modbus.fechar()
+
+if __name__ == "__main__":
+    ModbusApp().run()
