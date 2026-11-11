@@ -1,0 +1,100 @@
+MDScreen:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "15dp"
+
+        MDLabel:
+            text: "Cliente Modbus TCP - KivyMD"
+            font_style: "H5"
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        MDBoxLayout:
+            spacing: "10dp"
+            size_hint_y: None
+            height: "50dp"
+
+            MDTextField:
+                id: input_ip
+                hint_text: "IP do Servidor"
+                text: "127.0.0.1"
+
+            MDTextField:
+                id: input_porta
+                hint_text: "Porta"
+                text: "502"
+                input_filter: "int"
+
+            MDRaisedButton:
+                id: btn_conectar
+                text: "Conectar"
+                on_release: app.conectar()
+
+        MDBoxLayout:
+            spacing: "10dp"
+            size_hint_y: None
+            height: "50dp"
+
+            MDTextField:
+                id: input_tipo
+                hint_text: "Tipo (1=HR, 2=Coil, 3=Float, 4=Bit)"
+                text: "1"
+                input_filter: "int"
+            
+            MDTextField:
+                id: input_endereco
+                hint_text: "Endereço"
+                text: "1000"
+                input_filter: "int"
+
+            MDTextField:
+                id: input_indice_bit
+                hint_text: "Índice do Bit (0-15)"
+                input_filter: "int"
+        
+        MDBoxLayout:
+            spacing: "10dp"
+            size_hint_y: None
+            height: "50dp"
+            
+            MDTextField:
+                id: input_valor
+                hint_text: "Valor para Escrever"
+
+        MDBoxLayout:
+            spacing: "10dp"
+            size_hint_y: None
+            height: "50dp"
+
+            MDRaisedButton:
+                text: "Ler"
+                on_release: app.ler_dado()
+
+            MDRaisedButton:
+                text: "Escrever"
+                on_release: app.escrever_dado()
+
+            MDBoxLayout:
+                spacing: "5dp"
+                MDCheckbox:
+                    id: check_recorrente
+                    size_hint: None, None
+                    size: "48dp", "48dp"
+                    on_active: app.toggle_leitura_recorrente(*args)
+                MDLabel:
+                    text: "Leitura Contínua"
+
+        MDLabel:
+            id: label_status
+            text: "Status: Desconectado"
+            theme_text_color: "Secondary"
+            halign: "center"
+
+        MDLabel:
+            id: label_resultado
+            text: "Resultado da leitura aparecerá aqui."
+            theme_text_color: "Primary"
+            halign: "center"
+            font_style: "H6"
