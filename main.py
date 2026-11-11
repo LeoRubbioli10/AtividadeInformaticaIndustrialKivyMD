@@ -50,8 +50,11 @@ class ModbusApp(MDApp):
                     resultado = bits[int(indice)]
                 else:
                     resultado = bits
-                    
+
             if resultado is not None:
                 self.root.ids.label_resultado.text = f"Valor Lido: {resultado}"
             else:
                 self.root.ids.label_resultado.text = "Erro ao ler dado."
+                
+        except ValueError:
+            self.root.ids.label_status.text = "Status: Verifique os parâmetros de entrada."
