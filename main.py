@@ -79,3 +79,10 @@ class ModbusApp(MDApp):
             elif tipo == 4: 
                 indice = int(self.root.ids.input_indice_bit.text)
                 sucesso = self.cliente_modbus.escrever_bit_individual(endereco, indice, int(valor_str))
+
+            if sucesso:
+                self.root.ids.label_resultado.text = f"Escrita realizada com sucesso!"
+            else:
+                self.root.ids.label_resultado.text = "Erro na escrita."
+        except ValueError:
+            self.root.ids.label_status.text = "Status: Valor de escrita inválido."
